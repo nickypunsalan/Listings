@@ -5,7 +5,8 @@ Listings is an ASP.NET Core Web API that retrieves property listing information 
 1. Clone the Listings repo - `git clone https://github.com/nickypunsalan/Listings.git`
 
 2. Open the solution `.sln` file. You can do this through either Visual Studio or JetBrains Rider IDE applications.
-3. Run the Web API. This will start it on - `http://localhost:5210`
+3. Ensure configuration is set to `http` for local development
+4. Run the Web API. This will start it on - `http://localhost:5210`
 
 ## Usage
 
