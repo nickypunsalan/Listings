@@ -2,7 +2,7 @@ using Listings.Models;
 
 namespace Listings;
 
-public class PropertyInfoApi : IPropertyInfoApi
+public class MockPropertyInfoApi : IPropertyInfoApi
 {
     private readonly List<PropertyInfo> _properties =
     [

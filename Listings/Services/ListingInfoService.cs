@@ -4,12 +4,13 @@ using Listings.Services.Interfaces;
 
 namespace Listings.Services;
 
-public class ListingInfoService(IPropertyInfoApi propertyInfoApi) : IListingInfoService
+public class ListingInfoService(IPropertyInfoApi propertyInfoApi, ILogger<ListingInfoService> logger) : IListingInfoService
 {
     public async Task<ListingResponse?> GetListingInfo(string address)
     {
         if (string.IsNullOrWhiteSpace(address))
         {
+            logger.LogInformation("Was not provided an address. Returning null.");
             return null;
         }
         
@@ -21,9 +22,11 @@ public class ListingInfoService(IPropertyInfoApi propertyInfoApi) : IListingInfo
 
             if (propertyInfo == null)
             {
+                logger.LogInformation("Did not find property. Returning null.");
                 return null;
             }
 
+            logger.LogInformation($"Found ListingId - {propertyInfo.ListingId} | Address - {address}");
             return new ListingResponse
             {
                 PropertyInfo = propertyInfo
@@ -31,6 +34,7 @@ public class ListingInfoService(IPropertyInfoApi propertyInfoApi) : IListingInfo
         }
         catch (Exception ex)
         {
+            logger.LogError(ex, $"Error getting listing info for Address - {address}");
             return new ListingResponse
             {
                 Error = Shared.ErrorMessages.InternalServerError,

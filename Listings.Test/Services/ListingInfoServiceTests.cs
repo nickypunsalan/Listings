@@ -1,6 +1,7 @@
 using FluentAssertions;
 using Listings.Models;
 using Listings.Services;
+using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
 
 namespace Listings.Test.Services;
@@ -14,7 +15,7 @@ public class ListingInfoServiceTests
     public void Setup()
     {
         _mockPropertyInfoApi = new Mock<IPropertyInfoApi>();
-        _listingInfoService = new ListingInfoService(_mockPropertyInfoApi.Object);
+        _listingInfoService = new ListingInfoService(_mockPropertyInfoApi.Object, NullLogger<ListingInfoService>.Instance);
     }
 
     [Test]
@@ -60,6 +61,6 @@ public class ListingInfoServiceTests
         
         var result = await _listingInfoService.GetListingInfo(address);
         result.Should().NotBeNull();
-        result.Error.Should().Be("An error occurred while retrieving listing information");
+        result.Error.Should().Be(Shared.ErrorMessages.InternalServerError);
     }
 }

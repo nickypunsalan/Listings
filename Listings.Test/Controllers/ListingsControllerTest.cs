@@ -3,6 +3,7 @@ using Listings.Controllers;
 using Listings.Models;
 using Listings.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
 
 namespace Listings.Test.Controllers;
@@ -16,7 +17,7 @@ public class ListingsControllerTest
     public void Setup()
     {
         _mockListingInfoService = new Mock<IListingInfoService>();
-        _listingsController = new ListingsController(_mockListingInfoService.Object);
+        _listingsController = new ListingsController(_mockListingInfoService.Object, NullLogger<ListingsController>.Instance);
     }
 
     [Test]
