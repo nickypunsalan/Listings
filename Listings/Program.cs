@@ -6,8 +6,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
 builder.Services.AddControllers();
+
+builder.Services.AddMemoryCache();
 builder.Services.AddSingleton<IListingInfoService, ListingInfoService>();
 builder.Services.AddSingleton<IPropertyInfoApi, MockPropertyInfoApi>();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
