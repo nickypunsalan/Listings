@@ -8,8 +8,8 @@ namespace Listings.Controllers;
 [Route("api/[controller]")]
 public class ListingsController(IListingInfoService listingInfoService, ILogger<ListingsController> logger) : ControllerBase
 {
-    [HttpGet("{address}")]
-    public async Task<ActionResult> Get(string address)
+    [HttpGet]
+    public async Task<ActionResult> Get([FromQuery] string address)
     {
         logger.LogInformation($"Received request for Address - {address}");
         var listingResponse = await listingInfoService.GetListingInfo(address);
