@@ -11,11 +11,11 @@ Listings is an ASP.NET Core Web API that retrieves property listing information 
 ## Usage
 
 ### Endpoint
-`GET /api/listings/{address}`
+`GET /api/listings?address={address}`
 
 Retrieves property info by a single address
 - Method: `GET`
-- Path: `/api/listings/{address}`
+- Path: `/api/listings?address={address}`
 - URL Parameter:
   - `address` (string) - user-provided address 
 
